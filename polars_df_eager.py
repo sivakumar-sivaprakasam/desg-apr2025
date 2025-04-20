@@ -11,7 +11,7 @@ pl.Config.set_fmt_float("full")
 pl.Config.set_thousands_separator(",")
 
 # Load dataset into a DataFrame
-df = pl.read_csv("SG_HDB_Resale_Flat_Prices.csv", separator=",", infer_schema_length=1_000_000)
+df = pl.read_csv("data/SG_HDB_Resale_Flat_Prices.csv", separator=",", infer_schema_length=1_000_000)
 
 # Filter un-necessary data
 excluded_flat_types = ["null", "1 ROOM", "2 ROOM"]
