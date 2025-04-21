@@ -1,0 +1,70 @@
+columns:
+  - name: ID
+    type: customseq
+    datatype: int
+    start: 1
+    step: 1
+    pos: 1
+  - name: First Name
+    type: firstname
+    datatype: string
+    pos: 2
+  - name: Last Name
+    type: lastname
+    datatype: string
+    pos: 3
+  - name: Gender
+    type: gender
+    datatype: string
+    pos: 4
+  - name: Country
+    type: country
+    datatype: string
+    countries: ['US', 'UK', 'IN', 'AU', 'CA', 'DE', 'FR', 'JP', 'CN', 'BR', 'ZA', 'IT', 'ES', 'MX', 'RU', 'KR', 'SE', 'NO', 'FI', 'DK', 'PL']
+    pos: 5
+  - name: Phone No.
+    type: phonenumber
+    datatype: string
+    pos: 6
+  - name: Currency
+    type: currency
+    datatype: string
+    currency: ['USD', 'GBP', 'AUD', 'CAD', 'SGD', 'INR', 'EUR', 'JPY', 'CNY', 'BRL', 'ZAR', 'CHF', 'SEK', 'NOK', 'DKK', 'PLN']
+    pos: 7
+  - name: DOB
+    type: customdate
+    datatype: datetime
+    start: '01/01/1980'
+    end: '31/12/2006'
+    pos: 8
+  - name: Salary
+    type: customint
+    datatype: int
+    start: 10000
+    end: 20000
+    round: 1000
+    pos: 9
+  - name: Blood Group
+    type: customlist
+    datatype: string
+    values: ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']
+    pos: 10
+  - name: Email
+    type: email
+    datatype: string
+    # emailprovider: ['gmail.com','yahoo.com','hotmail.com','live.com','outlook.com']
+    pos: 11
+  - name: Company
+    type: organization
+    datatype: string
+    pos: 12
+  - name: Dept
+    type: department
+    datatype: string
+    # customdept: ['Marketing', 'Engineering', 'HR']
+    pos: 13
+  - name: Designation
+    type: designation
+    datatype: string
+    # customdes: ["Executive","Manager","Director"]
+    pos: 14
