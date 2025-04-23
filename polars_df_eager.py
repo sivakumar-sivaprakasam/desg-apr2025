@@ -47,5 +47,6 @@ df_joined = df_min.join(df_max, on=["town", "decade"]).select(
     pl.col("EXEC").alias("EXEC (MIN)"), pl.col("EXEC_right").alias("EXEC (MAX)"), 
     pl.col("MULTI-GEN").alias("MULTI-GEN (MIN)"), pl.col("MULTI-GEN_right").alias("MULTI-GEN (MAX)")).sort("town", "decade")
 print(df_joined)
+df_joined.write_csv("output\sg_hdb_result.csv", include_header=True)
 
 print("Execution Time: %.2f seconds" % (time.time() - start_time))
