@@ -18,9 +18,12 @@ excluded_flat_types = ["null", "1 ROOM", "2 ROOM"]
 df = df.filter(~pl.col("flat_type").is_in(excluded_flat_types))
 
 # Data Standardization
-df = df.with_columns(flat_type = pl.when(pl.col("flat_type") == "MULTI-GENERATION")
-                     .then(pl.lit("MULTI GENERATION"))
-                     .otherwise(pl.col("flat_type")),
+df = df.with_columns(flat_type = pl.when(pl.col("flat_type") == "MULTI-GENERATION").then(pl.lit("MULTI GENERATION"))
+                     .when(pl.col("flat_type") == "3 ROOM").then(pl.lit("3RM"))
+                     .when(pl.col("flat_type") == "4 ROOM").then(pl.lit("4RM"))
+                     .when(pl.col("flat_type") == "5 ROOM").then(pl.lit("5RM"))
+                     .when(pl.col("flat_type") == "EXECUTIVE").then(pl.lit("EXEC"))
+                     .when(pl.col("flat_type") == "MULTI GENERATION").then(pl.lit("MULTI-GEN")),
                      decade = pl.col("month").str.to_date("%Y-%m").dt.year() // 10 * 10)
 
 print("Min & Max Resale Values for each flat type for the period 1990 - Till date")
@@ -38,11 +41,11 @@ df_max = df.pivot("flat_type", index=["town", "decade"], values="resale_price", 
 df_joined = df_min.join(df_max, on=["town", "decade"]).select(
     pl.col("town"), 
     pl.format("{}", pl.col("decade")),
-    pl.col("3 ROOM").alias("3 ROOM (MIN)"), pl.col("3 ROOM_right").alias("3 ROOM (MAX)"), 
-    pl.col("4 ROOM").alias("4 ROOM (MIN)"), pl.col("4 ROOM_right").alias("4 ROOM (MAX)"), 
-    pl.col("5 ROOM").alias("5 ROOM (MIN)"), pl.col("5 ROOM_right").alias("5 ROOM (MAX)"), 
-    pl.col("EXECUTIVE").alias("EXECUTIVE (MIN)"), pl.col("EXECUTIVE_right").alias("EXECUTIVE (MAX)"), 
-    pl.col("MULTI GENERATION").alias("MULTI GENERATION (MIN)"), pl.col("MULTI GENERATION_right").alias("MULTI GENERATION (MAX)")).sort("town", "decade")
+    pl.col("3RM").alias("3RM (MIN)"), pl.col("3RM_right").alias("3RM (MAX)"), 
+    pl.col("4RM").alias("4RM (MIN)"), pl.col("4RM_right").alias("4RM (MAX)"), 
+    pl.col("5RM").alias("5RM (MIN)"), pl.col("5RM_right").alias("5RM (MAX)"), 
+    pl.col("EXEC").alias("EXEC (MIN)"), pl.col("EXEC_right").alias("EXEC (MAX)"), 
+    pl.col("MULTI-GEN").alias("MULTI-GEN (MIN)"), pl.col("MULTI-GEN_right").alias("MULTI-GEN (MAX)")).sort("town", "decade")
 print(df_joined)
 
 print("Execution Time: %.2f seconds" % (time.time() - start_time))
