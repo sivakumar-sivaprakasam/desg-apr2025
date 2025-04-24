@@ -11,7 +11,7 @@ pip install polars
 Run the below script to get the analysis results
 
 ```python
-python polars_df_eager.py
+python polars_sg_hdb_data_processing.py
 ```
 
 ### Usecase #2: Comparing Synthetic Customer Dataset against Polars, Pandas & PySpark
