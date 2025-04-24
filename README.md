@@ -54,8 +54,8 @@ My local environment details as follows
 
 ```python
 Windows 11
-Intel i7-12th Generation
-24 GB RAM
+i7 Processor
+8 Cores & 16 GB RAM
 
 Polars v1.27.1
 Pandas v2.2.0
